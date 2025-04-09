@@ -33,17 +33,52 @@ for i in range(1,11):
 
 from PIL import Image, ImageOps
 
-# Open the image
 img = Image.open(r"C:\Users\91881\OneDrive\Documents\PYTHON_TRAINING\python-basics-assignment\day-7 Iteration\example.jpg")
-
-
-# Invert the image colors
-inverted_img = ImageOps.invert(img.convert("RGB"))  # Ensure it's in RGB mode before inverting
-
-# Show the inverted image
+inverted_img = ImageOps.invert(img.convert("RGB"))  
 inverted_img.show()
-
-# Save the inverted image
 inverted_img.save("inverted_example.jpg")
 
 
+for i in range(5):
+    print(i)
+    i=i+2
+
+
+
+
+A = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
+
+B = [
+    [7, 8, 9],
+    [10, 11, 12],
+    [13, 14, 15]
+]
+
+def matrix_multiply(A, B):
+    
+    rows_A = len(A)
+    cols_A = len(A[0])
+    rows_B = len(B)
+    cols_B = len(B[0])
+
+    
+    if cols_A != rows_B:
+        raise ValueError("Number of columns in A = number of rows in B")
+
+    
+    result = [[0] * cols_B for _ in range(rows_A)]
+
+   
+    for i in range(rows_A): 
+        for j in range(cols_B):  
+            # for k in range(cols_A):  
+                result[i][j] += A[i][k] * B[k][j]  
+    return result
+
+
+result = matrix_multiply(A, B)
+for row in result:
+    print(row)
