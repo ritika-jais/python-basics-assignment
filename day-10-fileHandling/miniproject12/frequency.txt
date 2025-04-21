@@ -1,0 +1,11 @@
+at: 1
+back: 1
+barked: 1
+brown: 1
+dog: 2
+fox: 2
+jumps: 1
+lazy: 1
+over: 1
+quick: 1
+the: 4

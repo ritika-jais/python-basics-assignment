@@ -1,6 +1,9 @@
 #  1. Employee Attendance Tracker
 
 from datetime import date, timedelta
+import qrcode
+import pickle
+import atexit
 
 class Employee:
     """Manages employee records and attendance"""
@@ -74,6 +77,20 @@ class Employee:
         print("Employee ID not found!")
 
 
+    
+
+    def generate_qr(self, emp_id):
+        for employee in self.employee_list:
+            if employee['Emp_id'] == emp_id:
+                qr_data = str(emp_id)
+                qr = qrcode.make(qr_data)
+                qr.save(f"{emp_id}_qr.png")
+                print(f"QR code generated and saved as {emp_id}_qr.png")
+                return
+        print("Employee ID not found!")
+    
+
+
 employee_manager = Employee()
 
 while True:
@@ -131,6 +148,22 @@ while True:
             print("Invalid choice! Please enter a number between 1 and 6.")
 
 
+1
+
+def save_employee_data():
+    with open("employee_data.pkl", "wb") as f:
+        pickle.dump(Employee.employee_list, f)
+
+def load_employee_data():
+    global employee_manager
+    try:
+        with open("employee_data.pkl", "rb") as f:
+            Employee.employee_list = pickle.load(f)
+    except FileNotFoundError:
+        pass
+
+load_employee_data()
+atexit.register(save_employee_data)
 
 
  #2. Password Strength Checker
