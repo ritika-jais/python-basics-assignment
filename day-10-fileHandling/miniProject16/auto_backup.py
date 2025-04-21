@@ -9,7 +9,6 @@ def backup_data(source_file, backup_folder):
     current_date = datetime.now().strftime("%Y%m%d")
 
     backup_file = os.path.join(backup_folder, f"data_backup_{current_date}.csv")
-
     try:
        
         with open(source_file, 'r') as src:
